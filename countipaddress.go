@@ -23,7 +23,7 @@ func IPTest(start string, end string) (number float64) {
 	startIP := getNumber(startString)
 	endIP := getNumber(endString)
 	for i := 0; i < 4; i++ {
-
+    
 		number += math.Pow(float64(256), float64(3-i)) * float64(endIP[i]-startIP[i])
 
 	}
