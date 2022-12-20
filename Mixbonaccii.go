@@ -1,23 +1,22 @@
 package codewar
 
 func Mixbonacci(pattern []string, length int) []int64 {
-	orilength := len(pattern)
-	newpattern := []string{}
 	resultlist := []int64{}
 	patternCountMap := make(map[string]int)
-	for i := 0; i < length/orilength; i++ {
-		newpattern = append(newpattern, pattern...)
+	if length == 0 || len(pattern) == 0 {
+		return resultlist
 	}
-
-	for _, eachpattern := range newpattern {
-
-		if _, ok := patternCountMap[eachpattern]; !ok {
-			patternCountMap[eachpattern] = 0
+	for i := 0; i < length; i++ {
+		r := i % len(pattern)
+		thePattern := pattern[r]
+		if _, ok := patternCountMap[thePattern]; !ok {
+			patternCountMap[thePattern] = 0
 		}
-		result := Transform(eachpattern, patternCountMap[eachpattern])
+		result := Transform(pattern[r], patternCountMap[thePattern])
+		patternCountMap[thePattern]++
 		resultlist = append(resultlist, result)
-		patternCountMap[eachpattern]++
 	}
+
 	return resultlist
 }
 
@@ -92,11 +91,11 @@ func Tetranacci(number int) int {
 	case 0:
 		return 0
 	case 1:
-		return 1
+		return 0
 	case 2:
-		return 1
+		return 0
 	case 3:
-		return 2
+		return 1
 	default:
 		return Tetranacci(number-1) + Tetranacci(number-2) + Tetranacci(number-3) + Tetranacci(number-4)
 
